@@ -1,11 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'homepage.dart';
+import 'display_posts.dart';
 
 class NewPostPage extends StatefulWidget {
   @override
@@ -65,15 +66,18 @@ class _NewPostPageState extends State<NewPostPage> {
     // Navigate back to the previous page after submission
 
     //Navigator.pop(context);
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => DisplayPhotosPage()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('New Post'),
+        title: Text(
+          'Social Media App',
+          style: GoogleFonts.pacifico(),
+        ),
         actions: [
           IconButton(
             onPressed: _submitPost,

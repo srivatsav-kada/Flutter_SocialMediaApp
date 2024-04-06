@@ -26,12 +26,14 @@ class Navbars extends StatelessWidget {
 
 import 'package:flutter/material.dart';
 import 'new_post.dart'; // Import the new_post.dart file
+import 'friends.dart';
+import 'display_posts.dart';
 
 class Navbars extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      items: [
+      items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',
@@ -42,16 +44,26 @@ class Navbars extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          label: 'Profile',
+          label: 'Friends',
         ),
       ],
       onTap: (int index) {
-        // Check if the "New Post" icon is tapped
-        if (index == 1) {
+        // Check if the "Home" icon is tapped
+        if (index == 0) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DisplayPhotosPage()),
+          );
+        } else if (index == 1) {
           // Navigate to the NewPost screen
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => NewPostPage()),
+          );
+        } else if (index == 2) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
           );
         }
       },

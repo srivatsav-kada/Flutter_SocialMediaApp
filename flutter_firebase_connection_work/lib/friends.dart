@@ -1,9 +1,9 @@
-/*
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'new_post.dart';
-import 'display_posts.dart';
+import 'package:google_fonts/google_fonts.dart';
+//import 'new_post.dart';
+//import 'display_posts.dart';
 import 'package:flutter_firebase_connection_work/bottom_navbar.dart';
 
 class HomePage extends StatefulWidget {
@@ -70,37 +70,42 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Home'),
+      appBar: AppBar(
+        title: Text(
+          'Social Media App',
+          style: GoogleFonts.pacifico(),
         ),
-        body: _users.isEmpty
-            ? Center(child: CircularProgressIndicator())
-            : Column(children: [
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: _users.length,
-                    itemBuilder: (context, index) {
-                      final user = _users[index];
-                      final isFriend = _friendIds.contains(user.id);
-                      return ListTile(
-                        title: Text(user['name']),
-                        trailing: isFriend
-                            ? ElevatedButton(
-                                onPressed: () {
-                                  _removeFriend(user.id);
-                                },
-                                child: Text('Remove Friend'),
-                              )
-                            : ElevatedButton(
-                                onPressed: () {
-                                  _addFriend(user.id);
-                                },
-                                child: Text('Add Friend'),
-                              ),
-                      );
-                    },
-                  ),
+        //backgroundColor: Color.fromARGB(255, 193, 215, 205),
+      ),
+      body: _users.isEmpty
+          ? Center(child: CircularProgressIndicator())
+          : Column(children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _users.length,
+                  itemBuilder: (context, index) {
+                    final user = _users[index];
+                    final isFriend = _friendIds.contains(user.id);
+                    return ListTile(
+                      title: Text(user['name']),
+                      trailing: isFriend
+                          ? ElevatedButton(
+                              onPressed: () {
+                                _removeFriend(user.id);
+                              },
+                              child: Text('Remove Friend'),
+                            )
+                          : ElevatedButton(
+                              onPressed: () {
+                                _addFriend(user.id);
+                              },
+                              child: Text('Add Friend'),
+                            ),
+                    );
+                  },
                 ),
+              ),
+              /*
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushReplacement(
@@ -130,10 +135,9 @@ class _HomePageState extends State<HomePage> {
                   },
                   child: Text('Friends'),
                 ),
-              ]),
-              bottomNavigationBar: Navbars(),
-              );
+                */
+            ]),
+      bottomNavigationBar: Navbars(),
+    );
   }
 }
-
-*/

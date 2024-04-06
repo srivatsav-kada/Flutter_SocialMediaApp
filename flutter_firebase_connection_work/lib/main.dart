@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_firebase_connection_work/bottom_navbar.dart';
 import 'loginpage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Firebase Sign Up',
       home: SignUpPage(),
     );
@@ -101,109 +102,116 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Sign Up'),
+      appBar: AppBar(
+        title: Text(
+          'Social Media App',
+          style: GoogleFonts.pacifico(),
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.all(20.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  TextFormField(
-                    controller: _nameController,
-                    decoration: InputDecoration(
-                      labelText: 'Name',
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your name.';
-                      }
-                      return null;
-                    },
+        //backgroundColor: Color.fromARGB(255, 193, 215, 205),
+      ),
+
+      body: Center(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(20.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  controller: _nameController,
+                  decoration: InputDecoration(
+                    labelText: 'Name',
                   ),
-                  SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter an email address.';
-                      }
-                      return null;
-                    },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your name.';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 15.0),
+                TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    labelText: 'Email',
                   ),
-                  SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a password.';
-                      }
-                      return null;
-                    },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter an email address.';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 15.0),
+                TextFormField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
                   ),
-                  SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: _phoneNumberController,
-                    decoration: InputDecoration(
-                      labelText: 'Phone Number',
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your phone number.';
-                      }
-                      return null;
-                    },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a password.';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 15.0),
+                TextFormField(
+                  controller: _phoneNumberController,
+                  decoration: InputDecoration(
+                    labelText: 'Phone Number',
                   ),
-                  SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: _ageController,
-                    decoration: InputDecoration(
-                      labelText: 'Age',
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your age.';
-                      }
-                      return null;
-                    },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your phone number.';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 15.0),
+                TextFormField(
+                  controller: _ageController,
+                  decoration: InputDecoration(
+                    labelText: 'Age',
                   ),
-                  SizedBox(height: 20.0),
-                  _isLoading
-                      ? CircularProgressIndicator()
-                      : ElevatedButton(
-                          onPressed: () async {
-                            if (_formKey.currentState!.validate()) {
-                              await _signUp();
-                            }
-                          },
-                          child: Text('Sign Up'),
-                        ),
-                  SizedBox(
-                    height: 40.0,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                      );
-                    },
-                    child: Text('Login'),
-                  ),
-                ],
-              ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your age.';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 20.0),
+                _isLoading
+                    ? CircularProgressIndicator()
+                    : ElevatedButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            await _signUp();
+                          }
+                        },
+                        child: Text('Sign Up'),
+                      ),
+                SizedBox(
+                  height: 40.0,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  },
+                  child: Text('Login'),
+                ),
+              ],
             ),
           ),
         ),
-        bottomNavigationBar: Navbars());
+      ),
+
+      //bottomNavigationBar: Navbars()
+    );
   }
 }
